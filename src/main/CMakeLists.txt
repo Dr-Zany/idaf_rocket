@@ -1,7 +1,7 @@
 set(TARGET_NAME main)
 
 file(GLOB CPP
-    *.cpp
+  *.cpp
 )
 
 add_executable(${TARGET_NAME} ${CPP})
