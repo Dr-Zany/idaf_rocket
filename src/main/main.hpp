@@ -12,7 +12,7 @@
 #pragma once
 
 #include "hardware/i2c.h"
-#include "mpu6050Interface.hpp"
+#include "mpu6050Driver.hpp"
 #include "pico/binary_info.h"
 #include "pico/stdlib.h"
 #include "stdio.h"

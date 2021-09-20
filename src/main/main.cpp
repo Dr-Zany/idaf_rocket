@@ -21,30 +21,25 @@ bool reserved_addr(uint8_t addr)
 
 int main()
 {
+  absolute_time_t timeOut;
   stdio_init_all();
   i2c_init(i2c1, 100 * 1000);
   gpio_set_function(PIN_I2C_SCL, GPIO_FUNC_I2C);
   gpio_set_function(PIN_I2C_SDA, GPIO_FUNC_I2C);
   gpio_pull_up(PIN_I2C_SCL);
   gpio_pull_up(PIN_I2C_SDA);
-
   bi_decl(bi_2pins_with_func(PIN_I2C_SDA, PIN_I2C_SCL, GPIO_FUNC_I2C));
+
+  MPU6050Driver mpu6050(i2c1);
+  MPU6050InterfaceTypes::MPU6050Data data;
+  mpu6050.mpu6050Init();
   while (true)
   {
-    for (int addr = 0; addr < (1 << 7); addr++)
-    {
-      if (addr % 16 == 0)
-      {
-        printf("%02x ", addr);
-      }
-      int ret;
-      uint8_t rxdata;
-      if (reserved_addr(addr))
-        ret = PICO_ERROR_GENERIC;
-      else
-        ret = i2c_read_blocking(i2c1, addr, &rxdata, 1, false);
-      printf(ret < 0 ? "." : "@");
-      printf(addr % 16 == 15 ? "\n" : "  ");
-    }
+    timeOut = make_timeout_time_ms(10);
+    data = mpu6050.ReadData();
+    printf("Accale; x:%d y:%d z:%d\n", data.accel.x, data.accel.y, data.accel.z);
+    printf("Gyro; x:%d y:%d z:%d\n", data.gyro.x, data.gyro.y, data.gyro.z);
+    printf("Temp: %d", data.temp);
+    busy_wait_until(timeOut);
   }
 }

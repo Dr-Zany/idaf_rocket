@@ -5,4 +5,5 @@ file(GLOB CPP
 )
 
 add_library(${TARGET_NAME} ${CPP})
-target_include_directories(${TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} pico_stdlib hardware_i2c)
+target_include_directories(${TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(${TARGET_NAME} pico_stdlib hardware_i2c)
