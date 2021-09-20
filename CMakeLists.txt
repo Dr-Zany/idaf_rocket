@@ -20,3 +20,4 @@ add_compile_options(
 )
 
 add_subdirectory(src/main)
+add_subdirectory(src/mpu6050)
