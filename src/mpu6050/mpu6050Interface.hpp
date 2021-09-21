@@ -114,7 +114,7 @@ struct MPU6050Data
 {
   VectorData3D gyro;
   VectorData3D accel;
-  int16_t temp;
+  int16_t temp = 0;
 };
 
 }; // namespace MPU6050InterfaceTypes
@@ -131,7 +131,7 @@ public:
   MPU6050Interface(i2c_inst_t *i2cInterface) : m_i2cInterface(i2cInterface)
   {
   }
-  virtual bool mpu6050Init();
+  virtual bool Init();
 
   virtual MPU6050InterfaceTypes::accel_range_t getAccelerometerRange(void);
   virtual void setAccelerometerRange(MPU6050InterfaceTypes::accel_range_t);

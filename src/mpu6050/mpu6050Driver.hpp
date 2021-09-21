@@ -40,7 +40,7 @@ private:
 public:
   MPU6050Driver(i2c_inst_t *i2cInterface);
   ~MPU6050Driver();
-  bool mpu6050Init() override;
+  bool Init() override;
 
   MPU6050InterfaceTypes::accel_range_t getAccelerometerRange(void) override;
   void setAccelerometerRange(MPU6050InterfaceTypes::accel_range_t) override;

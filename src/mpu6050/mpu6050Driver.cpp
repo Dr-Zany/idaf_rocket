@@ -21,7 +21,7 @@ MPU6050Driver::~MPU6050Driver()
 {
 }
 
-bool MPU6050Driver::mpu6050Init()
+bool MPU6050Driver::Init()
 {
   bool ret;
   uint8_t src[] = {RegAddr::PWR_MGMT_1, 0x00};

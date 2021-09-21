@@ -47,5 +47,5 @@ uint32_t MPL3155a2Driver::DataRead()
   uint8_t reg = 0x01;
   i2c_write_blocking(m_i2cInterface, m_defaultAddress, &reg, 1, true);
   i2c_read_blocking(m_i2cInterface, m_defaultAddress, dst, 3, false);
-  return (dst[2] << 12) + (dst[1] << 4) + (dst[0] >> 4);
+  return (dst[0] << 12) + (dst[1] << 4) + (dst[2] >> 4);
 }

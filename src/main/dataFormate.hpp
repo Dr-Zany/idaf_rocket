@@ -21,7 +21,7 @@ typedef struct
   int16_t gyroZ;
   int16_t temp;
   uint32_t altitude;
-  uint64_t timeSampe;
+  uint64_t timeStampe;
 } data_formate_t;
 
 // Array size 26
@@ -30,7 +30,7 @@ void DataFormatToArray(data_formate_t *data, uint8_t dst[])
   uint8_t arrayCounter = 25;
   for (int i = 7; i >= 0; i++)
   {
-    dst[arrayCounter] = (data->timeSampe >> (i * 8)) & 0xFF;
+    dst[arrayCounter] = (data->timeStampe >> (i * 8)) & 0xFF;
     arrayCounter--;
   }
   for (int i = 3; i >= 0; i++)
@@ -84,7 +84,8 @@ void ArrayToDataFormate(uint8_t src[], data_formate_t *dst)
   dst->gyroY = (src[9] << 8) + src[8];
   dst->gyroZ = (src[11] << 8) + src[10];
   dst->temp = (src[13] << 8) + src[12];
-  dst->altitude = (src[17] << 8 * 3) + (src[16] << 8 * 2) + (src[15] << 8 * 1) + src[14];
-  dst->timeSampe = (src[25] << 8 * 7) + (src[24] << 8 * 6) + (src[23] << 8 * 5) + (src[22] << 8 * 4) +
-                   (src[21] << 8 * 3) + (src[20] << 8 * 2) + (src[19] << 8 * 1) + src[18];
+  dst->altitude = (src[17] << (8 * 3)) + (src[16] << (8 * 2)) + (src[15] << (8 * 1)) + src[14];
+  dst->timeStampe = (uint64_t)(src[25] << (8 * 7)) + (uint64_t)(src[24] << (8 * 6)) + (uint64_t)(src[23] << (8 * 5)) +
+                    (uint64_t)(src[22] << (8 * 4)) + (src[21] << (8 * 3)) + (src[20] << (8 * 2)) +
+                    (src[19] << (8 * 1)) + src[18];
 }
