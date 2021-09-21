@@ -11,6 +11,7 @@
 
 #pragma once
 
+#include "dataFormate.hpp"
 #include "hardware/i2c.h"
 #include "mpl3155a2Driver.hpp"
 #include "mpu6050Driver.hpp"

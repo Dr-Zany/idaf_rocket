@@ -17,7 +17,7 @@ class MPL3155a2Interface
 {
 protected:
   i2c_inst_t *m_i2cInterface;
-  uint8_t m_defaultAddress = 0xC0;
+  uint8_t m_defaultAddress = 0x60;
 
   virtual ~MPL3155a2Interface() = default;
 
