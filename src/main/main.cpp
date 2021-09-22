@@ -17,7 +17,7 @@
 #define PIN_MPL_I2C_SDA 10
 #define PIN_MPL_I2C_SCL 11
 
-#define MAX_STORAGE 3200
+#define MAX_STORAGE 4000
 
 typedef enum
 {
@@ -54,6 +54,8 @@ int main()
   MPU6050Driver mpu(i2c0);
   MPU6050InterfaceTypes::MPU6050Data data;
   mpu.Init();
+  mpu.setAccelerometerRange(MPU6050InterfaceTypes::accel_range_t::RANGE_4_G);
+  mpu.setGyroRange(MPU6050InterfaceTypes::gyro_range_t::RANGE_500_DEG);
 
   // mpl init
   i2c_init(i2c1, 100 * 1000);

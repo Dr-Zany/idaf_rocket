@@ -22,7 +22,7 @@ MPL3155a2Driver::~MPL3155a2Driver()
 bool MPL3155a2Driver::Init()
 {
   bool ret = true;
-  uint8_t src[] = {0x26, 0xB8};
+  uint8_t src[] = {0x26, 0x88};
   ret &= i2c_write_blocking(m_i2cInterface, m_defaultAddress, src, 2, false);
   src[0] = 0x13;
   src[1] = 0x07;

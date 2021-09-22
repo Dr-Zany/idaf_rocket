@@ -40,7 +40,8 @@ accel_range_t MPU6050Driver::getAccelerometerRange(void)
 
 void MPU6050Driver::setAccelerometerRange(accel_range_t accelRange)
 {
-  uint8_t src[] = {RegAddr::ACCEL_CONFIG, ((uint8_t)accelRange) << 3};
+  uint8_t data = accelRange;
+  uint8_t src[] = {RegAddr::ACCEL_CONFIG, data << 3};
   i2c_write_blocking(m_i2cInterface, m_defaultAddress, src, 2, false);
 }
 
@@ -55,7 +56,8 @@ gyro_range_t MPU6050Driver::getGyroRange(void)
 
 void MPU6050Driver::setGyroRange(gyro_range_t gyroRange)
 {
-  uint8_t src[] = {RegAddr::GYRO_CONFIG, ((uint8_t)gyroRange) << 3};
+  uint8_t data = gyroRange;
+  uint8_t src[] = {RegAddr::GYRO_CONFIG, data << 3};
   i2c_write_blocking(m_i2cInterface, m_defaultAddress, src, 1, false);
 }
 
